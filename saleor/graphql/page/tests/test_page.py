@@ -13,7 +13,7 @@ from ....attribute.utils import associate_attribute_values_to_instance
 from ....page.error_codes import PageErrorCode
 from ....page.models import Page, PageType
 from ....tests.utils import dummy_editorjs
-from ....webhook.event_types import WebhookEventType
+from ....webhook.event_types import WebhookEventAsyncType
 from ....webhook.payloads import generate_page_payload
 from ...tests.utils import get_graphql_content, get_graphql_content_from_response
 
@@ -383,7 +383,7 @@ def test_page_create_trigger_page_webhook(
     expected_data = generate_page_payload(page)
 
     mocked_webhook_trigger.assert_called_once_with(
-        WebhookEventType.PAGE_CREATED, expected_data
+        WebhookEventAsyncType.PAGE_CREATED, expected_data
     )
 
 
@@ -1251,7 +1251,7 @@ def test_page_delete_trigger_webhook(
     expected_data = generate_page_payload(page)
 
     mocked_webhook_trigger.assert_called_once_with(
-        WebhookEventType.PAGE_DELETED, expected_data
+        WebhookEventAsyncType.PAGE_DELETED, expected_data
     )
 
 
@@ -1432,7 +1432,7 @@ def test_update_page_trigger_webhook(
     expected_data = generate_page_payload(page)
 
     mocked_webhook_trigger.assert_called_once_with(
-        WebhookEventType.PAGE_UPDATED, expected_data
+        WebhookEventAsyncType.PAGE_UPDATED, expected_data
     )
 
 
